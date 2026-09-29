@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="miContenedor" prefHeight="560.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.padronadultos.controller.AdultoMayorController">
+    <children>
+        <VBox spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+            <children>
+
+                <!-- ===== TÍTULO ===== -->
+                <Label text="Padrón de Adultos Mayores">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+
+                <!-- ===== BARRA DE FILTROS: rango de edad y tipo de pensión ===== -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="panel-success">
+                    <padding>
+                        <Insets bottom="8.0" left="10.0" right="10.0" top="8.0" />
+                    </padding>
+                    <children>
+                        <Label text="Filtrar por edad:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label text="Desde" />
+                        <TextField fx:id="txtEdadMin" prefWidth="70.0" promptText="60" />
+                        <Label text="Hasta" />
+                        <TextField fx:id="txtEdadMax" prefWidth="70.0" promptText="120" />
+                        <Label text="Tipo de pensión:">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="cbxFiltroPension" prefWidth="210.0" />
+                        <Button mnemonicParsing="false" onAction="#aplicarFiltro" styleClass="btn, btn-success" text="Filtrar" />
+                        <Button mnemonicParsing="false" onAction="#limpiarFiltro" styleClass="btn, btn-warning" text="Limpiar filtro" />
+                        <Label fx:id="lblFiltroMsg" />
+                    </children>
+                </HBox>
+
+                <!-- ===== FORMULARIO (izquierda) + TABLA (derecha) ===== -->
+                <HBox spacing="10.0" VBox.vgrow="ALWAYS">
+                    <children>
+
+                        <VBox maxWidth="400.0" minWidth="400.0" prefWidth="400.0" spacing="10.0" styleClass="panel-success">
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                            <children>
+                                <Label text="Formulario de Registro">
+                                    <font>
+                                        <Font name="System Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <GridPane hgap="8.0" vgap="10.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="NEVER" minWidth="110.0" prefWidth="110.0" />
+                                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="250.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="Nombre completo" GridPane.rowIndex="0" />
+                                        <TextField fx:id="txtNombreCompleto" promptText="Apellidos y nombres" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                        <Label text="Edad" GridPane.rowIndex="1" />
+                                        <TextField fx:id="txtEdad" promptText="60 o más" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                        <Label text="CURP" GridPane.rowIndex="2" />
+                                        <TextField fx:id="txtCurp" promptText="18 caracteres" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                        <Label text="Domicilio" GridPane.rowIndex="3" />
+                                        <TextField fx:id="txtDomicilio" promptText="Dirección de residencia" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                        <Label text="Tipo de pensión" GridPane.rowIndex="4" />
+                                        <ComboBox fx:id="cbxTipoPension" maxWidth="1.7976931348623157E308" promptText="Seleccione" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                        <Label text="Estado de salud" GridPane.rowIndex="5" />
+                                        <ComboBox fx:id="cbxEstadoSalud" maxWidth="1.7976931348623157E308" promptText="Seleccione" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                                        <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                            <children>
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#validarFormulario" styleClass="btn, btn-primary" text="Guardar" HBox.hgrow="ALWAYS" />
+                                                <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancelar" styleClass="btn, btn-danger" text="Cancelar" HBox.hgrow="ALWAYS" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </GridPane>
+                                <Label fx:id="lbnMsg" maxWidth="380.0" wrapText="true" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <TableView fx:id="tableView" VBox.vgrow="ALWAYS">
+                                    <placeholder>
+                                        <Label text="No hay registros para mostrar" />
+                                    </placeholder>
+                                </TableView>
+                                <Label fx:id="lblTotal" />
+                            </children>
+                        </VBox>
+
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
